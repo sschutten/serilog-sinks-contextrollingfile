@@ -1,1 +1,1 @@
-# serilog-sinks-contextrollingfile
+# Serilog.Sinks.ContextRollingFile
