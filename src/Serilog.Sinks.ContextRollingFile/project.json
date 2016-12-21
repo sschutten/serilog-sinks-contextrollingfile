@@ -1,0 +1,43 @@
+{
+  "version": "0.1.0-*",
+  "title": "Context Rolling File sink for Serilog",
+  "authors": [ "sschutten", "DeSjoerd" ],
+  "description": "The rolling file sink for Serilog, with support for token replacement in the path template.",
+  "language": "en-US",
+  "copyright": "Copyright 2016",
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "Serilog": "2.3.0",
+    "Serilog.Sinks.RollingFile": "3.2.0"
+  },
+
+  "frameworks": {
+    "net4.5.1": {},
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
+        }
+      },
+      "imports": [
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
+    }
+  },
+
+  "packOptions": {
+    "owners": [ "sschutten", "DeSjoerd" ],
+    "summary": "Using this sink you can have the rolling file sink create separate files based on the properties of log events, e.g. when using ForContext(). To use this functionality add the tokens to the pathTemplate, e.g. \"Logs\\{MyContext:l}_{Date}.txt\".",
+    "iconUrl": "http://serilog.net/images/serilog-sink-nuget.png",
+    "licenseUrl": "http://opensource.org/licenses/Apache-2.0",
+    "tags": [ "serilog", "sink", "rolling", "file" ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/sschutten/serilog-sinks-contextrollingfile"
+    },
+    "projectUrl": "https://github.com/sschutten/serilog-sinks-contextrollingfile"
+  }
+}
