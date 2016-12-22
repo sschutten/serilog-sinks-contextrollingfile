@@ -23,6 +23,7 @@ namespace Serilog.Sinks.ContextRollingFile
         readonly Encoding _encoding;
         readonly bool _buffered;
         readonly bool _shared;
+        readonly string[] _protectedTokens = { "Date", "Hour", "HalfHour" };
 
         ConcurrentDictionary<string, RollingFileSink> _sinks = new ConcurrentDictionary<string, RollingFileSink>();
 
@@ -72,9 +73,9 @@ namespace Serilog.Sinks.ContextRollingFile
 
         public string RenderPath(IReadOnlyDictionary<string, LogEventPropertyValue> properties)
         {
-            var propertiesWithoutDate = properties.Where(p => p.Key != "Date")
+            var propertiesWithoutProtectedTokens = properties.Where(p => _protectedTokens.Contains(p.Key) == false)
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-            return _pathTemplate.Render(propertiesWithoutDate);
+            return _pathTemplate.Render(propertiesWithoutProtectedTokens);
         }
 
         private RollingFileSink CreateSink(string pathFormat)
